@@ -1,0 +1,32 @@
+//TRSRESTX JOB MSGCLASS=H,CLASS=A,NOTIFY=&SYSUID,REGION=0M 
+//*                                                        
+//* UNTERSE DATA                                           
+//*                                                        
+//STEP1    EXEC PGM=TRSMAIN,PARM=UNPACK                    
+//SYSPRINT DD   SYSOUT=*                                   
+//INFILE   DD   DISP=SHR,DSN=UPLOADED.DATASET.NAME         
+//OUTFILE  DD   DISP=(NEW,PASS),                           
+//       DSN=&&DUMPTAPE,                                   
+//       UNIT=SYSALLDA,STORCLAS=SCNOVIO,                   
+//       SPACE=(CYL,(1,1),RLSE)                            
+//*                                                        
+//* RESTORE DATA                                           
+//*                                                        
+//DSSREST  EXEC  PGM=ADRDSSU,COND=(00,NE)                  
+//SYSPRINT  DD  SYSOUT=*                                   
+//SYSABEND  DD  SYSOUT=*                                   
+//TAPE1    DD DSN=&&DUMPTAPE,DISP=OLD                      
+//DASD1    DD DISP=SHR,UNIT=SYSALLDA,STORCLAS=SCNOSMS,     
+//        VOL=SER=XXXXXX                                   
+//SYSIN    DD *                                            
+  REST DS( -                                               
+   INCL( -                                                 
+   SYS1.S0W1.DFSMS.SCDS -                                  
+   SYS1.S0W1.DFSMS.CNTL -                                  
+   )) -                                                    
+   SPHERE -                                                
+   CATALOG REPLACE -                                       
+   NULLMGMTCLAS -                                          
+   ODD(DASD1) -                                            
+   INDDNAME(TAPE1)                                         
+/*                                                         
