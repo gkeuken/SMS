@@ -1,0 +1,19 @@
+//IBMUSERJ JOB MSGCLASS=X,CLASS=A,NOTIFY=&SYSUID,REGION=0M 
+ //DEFCAT  EXEC PGM=IDCAMS 
+ //SYSPRINT DD SYSOUT=* 
+ //SYSIN    DD * 
+    DEFINE  USERCATALOG( - 
+                   NAME(USERCAT.PROD) - 
+                   STORCLAS(SCAPPL) - 
+                   ICFCATALOG - 
+                   TRACKS(150) - 
+                   BUFND(4) - 
+                   BUFNI(4) - 
+                     ) - 
+            DATA( - 
+                   CYL(10 5) - 
+                     ) - 
+            INDEX( - 
+                   TRACKS(10 5) - 
+                 ) 
+ /* 
