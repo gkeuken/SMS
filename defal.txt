@@ -1,0 +1,6 @@
+//IBMUSERJ JOB MSGCLASS=X,CLASS=A,NOTIFY=&SYSUID,REGION=0M    
+//STEP     EXEC PGM=IDCAMS,REGION=512K                        
+//SYSPRINT  DD SYSOUT=*                                       
+//SYSIN     DD *                                              
+ DEFINE ALIAS (NAME(PROD) -                                   
+               RELATE(USERCAT.PROD))    
