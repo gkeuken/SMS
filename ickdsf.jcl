@@ -1,0 +1,17 @@
+//ICKDSF01 JOB  (FB3),'INIT 3380 DASD',CLASS=A,MSGCLASS=H,
+//             NOTIFY=&SYSUID,MSGLEVEL=(1,1)
+//*
+//STEP01  EXEC PGM=ICKDSF,REGION=0M
+//SYSPRINT  DD SYSOUT=*
+//SYSIN     DD *
+      INIT -
+      UNIT(0AA2) -
+      NOCHECK -
+      CONTINUE -
+      NOVERIFY -
+      VTOC(0,1,30) -
+      INDEX(2,1,14) -
+      OWNERID('IBMUSER') -
+      VOLID(APPL00) -
+      STORAGEGROUP
+/*
